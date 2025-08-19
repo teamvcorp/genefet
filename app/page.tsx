@@ -3,10 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-// import { Dialog, DialogPanel } from '@headlessui/react'
+
 import {
-  Bars3Icon,
-  XMarkIcon,
+
   WrenchScrewdriverIcon,
   SparklesIcon,
   PaintBrushIcon,
@@ -14,13 +13,6 @@ import {
   TruckIcon,
   CurrencyDollarIcon,
 } from '@heroicons/react/24/outline'
-import Header from './components/Header'
-
-// const navigation = [
-//   { name: 'Make Payment', href: '/payment' },
-//   { name: 'Admin', href: '/admin' },
-//   { name: 'Facebook', href: 'https://www.facebook.com/genefeth' },
-// ]
 
 const services = [
   {
