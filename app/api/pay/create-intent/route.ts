@@ -29,8 +29,9 @@ export async function POST(req: Request) {
 
     const pi = await stripe.paymentIntents.create(params, { stripeAccount: ACCOUNT_ID });
     return NextResponse.json({ clientSecret: pi.client_secret });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error(err);
-    return NextResponse.json({ error: err.message || "Server error" }, { status: 500 });
+    const errorMessage = err instanceof Error ? err.message : "Server error";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

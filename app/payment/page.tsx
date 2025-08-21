@@ -80,8 +80,12 @@ export default function PayPage() {
         if (!res.ok) throw new Error(data.error || "Failed to create Checkout Session");
         setCheckoutUrl(data.url);
       }
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        alert(err.message);
+      } else {
+        alert("An unexpected error occurred.");
+      }
     } finally {
       setLoading(false);
     }

@@ -25,8 +25,12 @@ export default function PasscodePage() {
         throw new Error(data?.error || "Invalid passcode");
       }
       router.replace(returnTo);
-    } catch (e: any) {
-      setErr(e.message);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setErr(e.message);
+      } else {
+        setErr("An unexpected error occurred");
+      }
     } finally {
       setLoading(false);
     }

@@ -99,9 +99,15 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ url: session.url });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error(err);
-    return NextResponse.json({ error: err.message || "Server error" }, { status: 500 });
+    const errorMessage =
+      err instanceof Error
+        ? err.message
+        : typeof err === "string"
+        ? err
+        : "Server error";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
 
